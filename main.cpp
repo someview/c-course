@@ -37,10 +37,3 @@ int main() {
     std::cout << "\n✅ 程序执行完成！\n";
     return 0;
 }
-export module main;
-
-export import <iostream>;
-
-export void say_hello() {
-    std::cout << "Hello from C++20 module!" << std::endl;
-}

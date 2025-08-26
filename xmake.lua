@@ -1,22 +1,16 @@
-add_rules("mode.debug", "mode.release")
+-- xmake.lua
 
--- 设置C++20标准
+add_rules("mode.release", "mode.debug")
 set_languages("c++20")
 
--- 数学模块目标
-target("math_module")
-    set_kind("moduleonly")
-    add_files("modules/math.cppm")
+-- 在这里添加配置，禁用模块扫描
+set_config("scan_module_deps", false)
 
--- 主程序目标
-target("main")
+target("mod")
+    set_kind("static")
+    add_files("modules/math.cppm", {public = true})
+
+target("cpp_with_moduledeps")
     set_kind("binary")
+    add_deps("mod")
     add_files("main.cpp")
-    add_deps("math_module")
-
--- 测试程序目标
-target("test")
-    set_kind("binary")
-    add_files("tests/test.cpp")
-    add_deps("math_module")
-
